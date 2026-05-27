@@ -1,0 +1,32 @@
+Replace the WHOOP card in my dashboard with the full version (recovery ring, sleep stages bar, biomarkers, today's call verdict). Fetch the exact HTML/CSS/JS block from:
+
+  https://raw.githubusercontent.com/liamwiseeEEEee/ytdashfinal/main/health.html
+
+In that file, find the block between `<!-- ===== WHOOP card (full) ===== -->` and the closing `</script>` that comes right before `<div class="section-title">Daily Stack</div>`. That's the whole WHOOP card — copy it verbatim.
+
+In MY health.html, do this:
+
+1. If there's any existing WHOOP card block in <main> (anything with class names like .whoop-section / .whoop-card / sleep-card-root involving WHOOP, or scripts referencing 'whoop_tokens_v1'), DELETE all of it. Be thorough — remove the entire WHOOP <style>, the <div class="whoop-section">, and the <script> that follows.
+
+2. Paste the new full WHOOP card block from the source above into MY health.html, placed RIGHT ABOVE the `<div class="section-title">Daily Stack</div>` line inside <main>.
+
+3. In the pasted block, find this line:
+   const CLIENT_ID = '3b9d1b01-31fb-4bd8-b18c-c7fa27deed2f';
+   Replace that value with MY OWN WHOOP Client ID:
+
+   MY_WHOOP_CLIENT_ID: PASTE-YOUR-CLIENT-ID-HERE
+
+4. Also confirm these 3 files exist at the repo root (create them if missing using the contents from the same source repo at /api/whoop-callback.js, /api/whoop-refresh.js, /api/whoop-data.js):
+   - api/whoop-callback.js
+   - api/whoop-refresh.js
+   - api/whoop-data.js
+   And confirm root package.json declares `"@supabase/supabase-js": "^2.45.0"` (the proxy doesn't need it, but the dashboard does).
+
+5. Commit ("WHOOP card v2: recovery ring + stages + biomarkers + verdict") and push to main.
+
+After you finish, I will manually add these 3 env vars to Vercel → Settings → Environment Variables (Production + Preview):
+   WHOOP_CLIENT_ID     = (my Client ID)
+   WHOOP_CLIENT_SECRET = (my Client Secret — never paste this into the repo or this prompt)
+   WHOOP_REDIRECT_URI  = https://MY-VERCEL-DOMAIN.vercel.app/api/whoop-callback
+
+And in my WHOOP developer dashboard, I'll set the Redirect URL to the exact same value as WHOOP_REDIRECT_URI. Then redeploy on Vercel.
