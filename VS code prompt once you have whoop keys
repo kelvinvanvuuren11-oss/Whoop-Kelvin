@@ -1,0 +1,122 @@
+Add WHOOP live data to my dashboard's Health tab. I created a WHOOP developer app at developer.whoop.com — here are my credentials:
+
+WHOOP_CLIENT_ID:     PASTE-YOUR-WHOOP-CLIENT-ID-HERE
+WHOOP_CLIENT_SECRET: PASTE-YOUR-WHOOP-CLIENT-SECRET-HERE
+MY_VERCEL_URL:       https://YOUR-VERCEL-DOMAIN.vercel.app
+
+(Important: only the Client ID goes into the frontend code. The Client Secret never touches the repo — it lives only in Vercel env vars.)
+
+Do all of this:
+
+================ 1. Create api/whoop-callback.js ================
+
+export default async function handler(req, res) {
+  const code = req.query && req.query.code;
+  if (req.query && req.query.error) return res.status(400).send('WHOOP auth error: ' + req.query.error);
+  if (!code) return res.status(400).send('Missing code parameter.');
+  const clientId     = process.env.WHOOP_CLIENT_ID;
+  const clientSecret = process.env.WHOOP_CLIENT_SECRET;
+  const redirectUri  = process.env.WHOOP_REDIRECT_URI;
+  if (!clientId || !clientSecret || !redirectUri) {
+    return res.status(500).send('Server not configured (missing WHOOP_* env vars).');
+  }
+  try {
+    const body = new URLSearchParams({
+      grant_type: 'authorization_code', code, redirect_uri: redirectUri,
+      client_id: clientId, client_secret: clientSecret,
+    });
+    const tokenRes = await fetch('https://api.prod.whoop.com/oauth/oauth2/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body,
+    });
+    const text = await tokenRes.text();
+    if (!tokenRes.ok) return res.status(500).send('WHOOP token exchange failed: ' + text);
+    let json;
+    try { json = JSON.parse(text); } catch { return res.status(500).send('Non-JSON: ' + text); }
+    const access = json.access_token || '';
+    const refresh = json.refresh_token || '';
+    const expiresIn = json.expires_in || 3600;
+    const hash = new URLSearchParams({
+      whoop_access: access, whoop_refresh: refresh,
+      whoop_expires: String(Date.now() + expiresIn * 1000),
+    }).toString();
+    res.writeHead(302, { Location: '/health.html#' + hash });
+    res.end();
+  } catch (e) {
+    res.status(500).send('Unexpected: ' + (e.message || String(e)));
+  }
+}
+
+================ 2. Create api/whoop-refresh.js ================
+
+export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(204).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'method not allowed' });
+  let body = req.body;
+  if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
+  const refresh = body && body.refresh_token;
+  if (!refresh) return res.status(400).json({ error: 'refresh_token required' });
+  const clientId = process.env.WHOOP_CLIENT_ID;
+  const clientSecret = process.env.WHOOP_CLIENT_SECRET;
+  if (!clientId || !clientSecret) return res.status(500).json({ error: 'server not configured' });
+  try {
+    const form = new URLSearchParams({
+      grant_type: 'refresh_token', refresh_token: refresh,
+      client_id: clientId, client_secret: clientSecret, scope: 'offline',
+    });
+    const r = await fetch('https://api.prod.whoop.com/oauth/oauth2/token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: form,
+    });
+    const text = await r.text();
+    if (!r.ok) return res.status(500).json({ error: 'refresh failed: ' + text });
+    try { return res.status(200).json(JSON.parse(text)); }
+    catch { return res.status(500).json({ error: 'non-JSON' }); }
+  } catch (e) {
+    return res.status(500).json({ error: 'fetch error: ' + (e.message || String(e)) });
+  }
+}
+
+================ 3. Create api/whoop-data.js ================
+
+(Note: WHOOP moved most endpoints to v2; only /cycle still works on v1.)
+
+export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization, Content-Type');
+  if (req.method === 'OPTIONS') return res.status(204).end();
+  if (req.method !== 'GET') return res.status(405).json({ error: 'method not allowed' });
+  const auth = req.headers.authorization || '';
+  if (!auth.startsWith('Bearer ')) return res.status(401).json({ error: 'missing bearer token' });
+  const path = (req.query && req.query.path) || '';
+  if (!path || !path.startsWith('/')) return res.status(400).json({ error: 'path required' });
+  const fwd = new URLSearchParams();
+  for (const [k, v] of Object.entries(req.query || {})) {
+    if (k !== 'path') fwd.set(k, String(v));
+  }
+  const qs = fwd.toString();
+  const base = path.startsWith('/cycle')
+    ? 'https://api.prod.whoop.com/developer/v1'
+    : 'https://api.prod.whoop.com/developer/v2';
+  const url = base + path + (qs ? '?' + qs : '');
+  try {
+    const r = await fetch(url, {
+      headers: { 'Authorization': auth, 'Accept': 'application/json' },
+    });
+    const text = await r.text();
+    res.status(r.status).setHeader('Content-Type', 'application/json');
+    return res.send(text);
+  } catch (e) {
+    return res.status(500).json({ error: 'proxy fetch failed: ' + (e.message || String(e)) });
+  }
+}
+
+================ 4. Update health.html ================
+
+Near the TOP of <main> (right above the Daily Stack section-title line), paste the WHOOP card block. The frontend Client ID below must be replaced with my actual Client ID (the value at the top of this prompt). Use this entire block exactly:
