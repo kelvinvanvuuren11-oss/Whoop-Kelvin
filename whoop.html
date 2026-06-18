@@ -69,7 +69,7 @@
     .whoop-stat-label { font-size:10px; color:var(--text-tertiary); text-transform:uppercase; letter-spacing:0.14em; font-weight:700; margin-bottom:8px; }
     .whoop-stat-value { font-size:22px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; letter-spacing:-0.03em; }
     .whoop-stat-sub { font-size:10px; color:var(--text-tertiary); margin-top:5px; font-family:var(--font-mono); }
-    @media(max-width:480px){.whoop-stats{grid-template-columns:repeat(2,1fr)}.whoop-stat-value{font-size:20py}}
+    @media(max-width:480px){.whoop-stats{grid-template-columns:repeat(2,1fr)}.whoop-stat-value{font-size:20px}}
 
     /* Sleep stages */
     .whoop-stages { margin-bottom:22px; padding-top:22px; border-top:1px solid rgba(255,255,255,0.06); }
@@ -153,7 +153,7 @@
 <body>
 
 <div id="demoBanner">
-  <span><strong>Demo mode</strong> — Kelvin's real WHOOP data (2023–Jun 2026). Arrows browse 30 simulated days.</span>
+  <span><strong>Demo mode</strong> &#8212; Kelvin's real WHOOP data (2023&#8211;Jun 2026). Arrows browse 30 simulated days.</span>
   <div class="demo-day-nav">
     <button id="prevDay">&#8249;</button>
     <span id="demoDayLabel">Today</span>
@@ -220,7 +220,7 @@
     <div class="whoop-stats">
       <div class="whoop-stat"><span class="zd" id="zSleep"></span><div class="whoop-stat-label">Sleep</div><div id="vSleepPerf" class="whoop-stat-value">--</div><div id="vSleepDur" class="whoop-stat-sub">--</div></div>
       <div class="whoop-stat"><span class="zd" id="zStrain"></span><div class="whoop-stat-label">Strain</div><div id="vStrain" class="whoop-stat-value">--</div><div class="whoop-stat-sub">yesterday</div></div>
-      <div class="whoop-stat"><span class="zd" id="zXrv"></span><div class="whoop-stat-label">HRV</div><div id="vHrv" class="whoop-stat-value">--</div><div class="whoop-stat-sub">ms</div></div>
+      <div class="whoop-stat"><span class="zd" id="zHrv"></span><div class="whoop-stat-label">HRV</div><div id="vHrv" class="whoop-stat-value">--</div><div class="whoop-stat-sub">ms</div></div>
       <div class="whoop-stat"><span class="zd" id="zRhr"></span><div class="whoop-stat-label">RHR</div><div id="vRhr" class="whoop-stat-value">--</div><div class="whoop-stat-sub">bpm</div></div>
     </div>
 
@@ -248,10 +248,10 @@
     </div>
 
     <div class="thresholds">
-      <div class="threshold-title">Kelvin's training rules (IL6 CC · COMT GG · ACTN3 RR)</div>
+      <div class="threshold-title">Kelvin's training rules (IL6 CC &#183; COMT GG &#183; ACTN3 RR)</div>
       <div class="threshold-grid">
         <div class="threshold-tag">Red &lt;34% &#8594; walk only, strain &#8804;8</div>
-        <div class="threshold-tag">Yellow 34–66% &#8594; &#8722;30–40% intensity</div>
+        <div class="threshold-tag">Yellow 34&#8211;66% &#8594; &#8722;30&#8211;40% intensity</div>
         <div class="threshold-tag">Green &#8805;67% &#8594; full session allowed</div>
         <div class="threshold-tag">HRV &lt;85ms &#8594; reduce even if green</div>
         <div class="threshold-tag">RHR &gt;55bpm &#8594; active recovery only</div>
@@ -267,10 +267,10 @@
 <div class="section">
   <div class="section-title">Progression</div>
   <div class="card prog-card">
-    <div class="prog-title">Recovery &amp; Autonomics — yearly arc</div>
+    <div class="prog-title">Recovery &amp; Autonomics &#8212; yearly arc</div>
     <div class="prog-years">
       <div class="prog-year">
-        <div class="prog-year-label">2023 <span style="font-size:11px;color:var(--text-tertiary);font-weight:400">(Jun–Dec, onboarding)</span></div>
+        <div class="prog-year-label">2023 <span style="font-size:11px;color:var(--text-tertiary);font-weight:400">(Jun&#8211;Dec, onboarding)</span></div>
         <div class="prog-metrics">
           <div class="prog-metric"><div class="prog-metric-val">66%</div><div class="prog-metric-label">Recovery</div></div>
           <div class="prog-metric"><div class="prog-metric-val">~95<span style="font-size:13px">ms</span></div><div class="prog-metric-label">HRV avg</div></div>
@@ -294,16 +294,16 @@
           <div class="prog-metric"><div class="prog-metric-val">~98<span style="font-size:13px">ms</span></div><div class="prog-metric-label">HRV avg</div></div>
           <div class="prog-metric"><div class="prog-metric-val trend-up">50.0<span style="font-size:13px">bpm</span></div><div class="prog-metric-label">RHR avg &#8595;</div></div>
         </div>
-        <div class="prog-interp">Avg strain jumped to ~20.5. RHR continued improving despite load — more conditioned cardiovascular system. Sleep peaked at 93.2% perf, 94.7% efficiency.</div>
+        <div class="prog-interp">Avg strain jumped to ~20.5. RHR continued improving despite load &#8212; more conditioned cardiovascular system. Sleep peaked at 93.2% perf, 94.7% efficiency.</div>
       </div>
       <div class="prog-year">
-        <div class="prog-year-label">2026 YTD <span style="font-size:11px;color:#6BE3A4;font-weight:400">(Jan–Jun 18)</span></div>
+        <div class="prog-year-label">2026 YTD <span style="font-size:11px;color:#6BE3A4;font-weight:400">(Jan&#8211;Jun 18)</span></div>
         <div class="prog-metrics">
           <div class="prog-metric"><div class="prog-metric-val trend-up">66%</div><div class="prog-metric-label">Recovery</div></div>
           <div class="prog-metric"><div class="prog-metric-val">~100<span style="font-size:13px">ms</span></div><div class="prog-metric-label">HRV avg</div></div>
-          <div class="prog-metric"><div class="prog-metric-val trend-up">48.9<span style="font-size:13px">bpm</span></div><div class="prog-metric-label">RHR — best ever</div></div>
+          <div class="prog-metric"><div class="prog-metric-val trend-up">48.9<span style="font-size:13px">bpm</span></div><div class="prog-metric-label">RHR &#8212; best ever</div></div>
         </div>
-        <div class="prog-interp">Deliberate load down-shift (strain ~15.8, steps ~8,300/day). Cardiovascular metrics still improving — resilient base, not deconditioning.</div>
+        <div class="prog-interp">Deliberate load down-shift (strain ~15.8, steps ~8,300/day). Cardiovascular metrics still improving &#8212; resilient base, not deconditioning.</div>
       </div>
     </div>
 
@@ -346,23 +346,23 @@
         <span class="gene-tag">CYP2R1 GG</span>
       </div>
       <div style="font-size:11.5px;color:var(--text-tertiary);line-height:1.5">
-        ACTN3 RR = power/sprint profile. COMT GG = "warrior" — higher dopamine tone, handles acute stress well. IL6 CC = higher post-exercise IL-6 → inflammation risk after strain 15+, drives anti-inflammatory stack. CYP1A2 AA = fast caffeine metaboliser. COL1A1 AC = soft-tissue considerations.
+        ACTN3 RR = power/sprint profile. COMT GG = "warrior" &#8212; higher dopamine tone, handles acute stress well. IL6 CC = higher post-exercise IL-6 &#8594; inflammation risk after strain 15+, drives anti-inflammatory stack. CYP1A2 AA = fast caffeine metaboliser. COL1A1 AC = soft-tissue considerations.
       </div>
     </div>
     <div class="ctx-section">
       <div class="ctx-heading">Training structure</div>
       <div class="ctx-grid">
-        <div class="ctx-item"><div class="ctx-item-label">Basketball</div><div class="ctx-item-val">~2x/week — one very hard, one moderate-hard. No lower-body lifting within 24h.</div></div>
+        <div class="ctx-item"><div class="ctx-item-label">Basketball</div><div class="ctx-item-val">~2x/week &#8212; one very hard, one moderate-hard. No lower-body lifting within 24h.</div></div>
         <div class="ctx-item"><div class="ctx-item-label">Strength</div><div class="ctx-item-val">Barbell reverse lunges, goblet side lunges, DB bench, loaded chin-ups, landmine press, jumps/plyos.</div></div>
-        <div class="ctx-item"><div class="ctx-item-label">Conditioning</div><div class="ctx-item-val">Zone 2 (stationary bike) for fat loss. High days 15–19.5 strain.</div></div>
+        <div class="ctx-item"><div class="ctx-item-label">Conditioning</div><div class="ctx-item-val">Zone 2 (stationary bike) for fat loss. High days 15&#8211;19.5 strain.</div></div>
         <div class="ctx-item"><div class="ctx-item-label">Recovery tools</div><div class="ctx-item-val">Ice bath, steam room, NormaTec boots, long sleep prioritisation.</div></div>
       </div>
     </div>
     <div class="ctx-section">
       <div class="ctx-heading">Supplement stack</div>
       <div class="ctx-grid">
-        <div class="ctx-item"><div class="ctx-item-label">Daily</div><div class="ctx-item-val">Creatine 5g (Creapure), collagen + vit C pre-training, D3 3–4k IU, high-EPA fish oil 2–3g EPA+DHA.</div></div>
-        <div class="ctx-item"><div class="ctx-item-label">Night stack</div><div class="ctx-item-val">Mg 300–400mg, zinc 15–25mg, occasional melatonin 0.5mg. Methylfolate 400mcg + methyl-B12 1000mcg.</div></div>
+        <div class="ctx-item"><div class="ctx-item-label">Daily</div><div class="ctx-item-val">Creatine 5g (Creapure), collagen + vit C pre-training, D3 3&#8211;4k IU, high-EPA fish oil 2&#8211;3g EPA+DHA.</div></div>
+        <div class="ctx-item"><div class="ctx-item-label">Night stack</div><div class="ctx-item-val">Mg 300&#8211;400mg, zinc 15&#8211;25mg, occasional melatonin 0.5mg. Methylfolate 400mcg + methyl-B12 1000mcg.</div></div>
         <div class="ctx-item"><div class="ctx-item-label">Anti-inflammatory</div><div class="ctx-item-val">NAC 600mg, bioavailable curcumin, ashwagandha, phosphatidylserine.</div></div>
         <div class="ctx-item"><div class="ctx-item-label">Medication</div><div class="ctx-item-val">Ritalin.</div></div>
       </div>
@@ -370,10 +370,10 @@
     <div class="ctx-section">
       <div class="ctx-heading">Physiology</div>
       <div class="ctx-grid">
-        <div class="ctx-item"><div class="ctx-item-label">Profile</div><div class="ctx-item-val">29yo · 196cm · 95kg · CMJ 50.5cm · 3RM Bench 105kg</div></div>
-        <div class="ctx-item"><div class="ctx-item-label">Sleep goal</div><div class="ctx-item-val">&#8805;8h in bed nightly · target wake ~7:30am · flag &lt;7h as problematic</div></div>
-        <div class="ctx-item"><div class="ctx-item-label">HRV range</div><div class="ctx-item-val">Good days: 95–110ms · Stress/illness: 50–70ms · Threshold: 85ms</div></div>
-        <div class="ctx-item"><div class="ctx-item-label">RHR range</div><div class="ctx-item-val">Best: low 40s · Normal: 48–53 · Run down: 56–60bpm</div></div>
+        <div class="ctx-item"><div class="ctx-item-label">Profile</div><div class="ctx-item-val">29yo &#183; 196cm &#183; 95kg &#183; CMJ 50.5cm &#183; 3RM Bench 105kg</div></div>
+        <div class="ctx-item"><div class="ctx-item-label">Sleep goal</div><div class="ctx-item-val">&#8805;8h in bed nightly &#183; target wake ~7:30am &#183; flag &lt;7h as problematic</div></div>
+        <div class="ctx-item"><div class="ctx-item-label">HRV range</div><div class="ctx-item-val">Good days: 95&#8211;110ms &#183; Stress/illness: 50&#8211;70ms &#183; Threshold: 85ms</div></div>
+        <div class="ctx-item"><div class="ctx-item-label">RHR range</div><div class="ctx-item-val">Best: low 40s &#183; Normal: 48&#8211;53 &#183; Run down: 56&#8211;60bpm</div></div>
       </div>
     </div>
   </div>
@@ -384,7 +384,6 @@
 (function () {
   'use strict';
 
-  // Kelvin's real ranges (from WHOOP AI coach, Jun 2026)
   var BASE = { recovery:66, hrv:100, rhr:48.9, sleepHrs:8.08, sleepPerf:91.6, strain:15.8, spo2:97.8, skinTemp:36.1, respRate:14.8 };
 
   function makePRNG(seed) {
@@ -429,74 +428,71 @@
   var dayIndex=0;
   function $(id){return document.getElementById(id);}
   function fmtMs(ms){var h=Math.floor(ms/3600000),m=Math.floor((ms%3600000)/60000);return h+'h '+m+'m';}
-
   function sz(id,cls){var e=$(id);if(e)e.className='zd '+(cls||'');}
-
   function dayLabel(i){if(i===0)return'Today';if(i===1)return'Yesterday';return i+' days ago';}
 
   function render(d){
-    var circ=603.19, rf=$('ringFill');
+    var circ=603.19, rf=document.getElementById('ringFill');
     rf.style.strokeDashoffset=circ-(d.recovery/100)*circ;
     var col=d.recovery>=67?'#6BE3A4':d.recovery>=34?'#F2C063':'#FF8A8A';
     rf.style.stroke=col;
-    $('rScore').textContent=d.recovery;
+    document.getElementById('rScore').textContent=d.recovery;
     var lbl=d.recovery>=67?'Green':d.recovery>=34?'Yellow':'Red';
-    $('rLabel').textContent=lbl; $('rLabel').style.color=col;
+    document.getElementById('rLabel').textContent=lbl;
+    document.getElementById('rLabel').style.color=col;
 
-    $('vHrv').textContent=d.hrv;
+    document.getElementById('vHrv').textContent=d.hrv;
     sz('zHrv',d.hrv>=100?'z-good':d.hrv>=85?'z-norm':d.hrv>=70?'z-warn':'z-bad');
-    $('vRhr").textContent=d.rhr;
+    document.getElementById('vRhr').textContent=d.rhr;
     sz('zRhr',d.rhr<=44?'z-good':d.rhr<=52?'z-norm':d.rhr<=55?'z-warn':'z-bad');
-    $('vSleepPerf').textContent=d.sleepPerf+'%';
+    document.getElementById('vSleepPerf').textContent=d.sleepPerf+'%';
     sz('zSleep',d.sleepPerf>=90?'z-good':d.sleepPerf>=80?'z-norm':d.sleepPerf>=65?'z-warn':'z-bad');
-    $('vSleepDur').textContent=fmtMs(d.stages.totalMs-d.stages.awake);
-    $('vStrain').textContent=d.strain.toFixed(1);
+    document.getElementById('vSleepDur').textContent=fmtMs(d.stages.totalMs-d.stages.awake);
+    document.getElementById('vStrain').textContent=d.strain.toFixed(1);
     sz('zStrain',d.strain<=10?'z-good':d.strain<=16?'z-norm':d.strain<=19?'z-warn':'z-bad');
 
     var tot=d.stages.totalMs;
-    $('sRem').style.width=(d.stages.rem/tot*100).toFixed(1)+'%';
-    $('sDeep').style.width=(d.stages.deep/tot*100).toFixed(1)+'%';
-    $('sLight').style.width=(d.stages.light/tot*100).toFixed(1)+'%';
-    $('sAwake').style.width=(d.stages.awake/tot*100).toFixed(1)+'%';
-    $('tRem').textContent=fmtMs(d.stages.rem); $('tDeep').textContent=fmtMs(d.stages.deep);
-    $('tLight').textContent=fmtMs(d.stages.light); $('tAwake').textContent=fmtMs(d.stages.awake);
-    $('stagesMeta').textContent=fmtMs(tot)+' in bed';
+    document.getElementById('sRem').style.width=(d.stages.rem/tot*100).toFixed(1)+'%';
+    document.getElementById('sDeep').style.width=(d.stages.deep/tot*100).toFixed(1)+'%';
+    document.getElementById('sLight').style.width=(d.stages.light/tot*100).toFixed(1)+'%';
+    document.getElementById('sAwake').style.width=(d.stages.awake/tot*100).toFixed(1)+'%';
+    document.getElementById('tRem').textContent=fmtMs(d.stages.rem);
+    document.getElementById('tDeep').textContent=fmtMs(d.stages.deep);
+    document.getElementById('tLight').textContent=fmtMs(d.stages.light);
+    document.getElementById('tAwake').textContent=fmtMs(d.stages.awake);
+    document.getElementById('stagesMeta').textContent=fmtMs(tot)+' in bed';
 
-    $('vSpo2').textContent=d.spo2.toFixed(1)+'%';
+    document.getElementById('vSpo2').textContent=d.spo2.toFixed(1)+'%';
     sz('zSpo2',d.spo2>=97.5?'z-good':d.spo2>=95?'z-norm':'z-bad');
-    $('vSkin').textContent=d.skinTemp.toFixed(1)+'°C'; sz('zSkin','z-norm');
-    $('vResp').textContent=d.respRate.toFixed(1)+' br/m';
+    document.getElementById('vSkin').textContent=d.skinTemp.toFixed(1)+'C'; sz('zSkin','z-norm');
+    document.getElementById('vResp').textContent=d.respRate.toFixed(1)+' br/m';
     sz('zResp',d.respRate<=15.5?'z-good':d.respRate<=17?'z-norm':'z-warn');
 
-    $('whoopUpdated').textContent='Updated '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('whoopUpdated').textContent='Updated '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
 
-    // Verdict using actual training rules from screenshots
-    var badge=$('vBadge'),hl=$('vHeadline'),rs=$('vReasons'),av=$('vAvoid'),avt=$('vAvoidTxt');
+    var badge=document.getElementById('vBadge'),hl=document.getElementById('vHeadline'),rs=document.getElementById('vReasons'),av=document.getElementById('vAvoid'),avt=document.getElementById('vAvoidTxt');
     av.style.display='none';
     if(d.recovery<34){
       badge.textContent='Rest';badge.style.cssText='background:rgba(255,138,138,0.15);border-color:#FF8A8A;color:#FF8A8A';
-      hl.textContent='Red zone — walk only, cap strain at 8.';
+      hl.textContent='Red zone - walk only, cap strain at 8.';
       av.style.display='';avt.textContent='All resistance work, basketball, lactate sessions';
     } else if(d.hrv<85||d.rhr>55){
       badge.textContent='Caution';badge.style.cssText='background:rgba(242,192,99,0.15);border-color:#F2C063;color:#F2C063';
-      var flags=[];
-      if(d.hrv<85) flags.push('HRV '+d.hrv+'ms (threshold 85ms)');
-      if(d.rhr>55) flags.push('RHR '+d.rhr+'bpm (threshold 55bpm)');
-      hl.textContent='Biomarkers flagging — reduce intensity regardless of recovery colour.';
+      hl.textContent='Biomarkers flagging - reduce intensity regardless of recovery colour.';
       av.style.display='';avt.textContent='High-intensity work, heavy strength sessions';
     } else if(d.recovery>=67){
       badge.textContent='Go';badge.style.cssText='background:rgba(107,227,164,0.15);border-color:#6BE3A4;color:#6BE3A4';
-      hl.textContent=d.strain>=15?'Green light — but mind your IL6 ceiling. Keep strain ≤14 to protect tomorrow.':'Full green — push hard, you\'re recovered.';
+      hl.textContent=d.strain>=15?'Green light - but mind your IL6 ceiling. Keep strain under 14 to protect tomorrow.':'Full green - push hard, you\'re recovered.';
     } else {
       badge.textContent='Moderate';badge.style.cssText='background:rgba(242,192,99,0.15);border-color:#F2C063;color:#F2C063';
-      hl.textContent='Yellow zone — reduce planned intensity ~30–40%.';
+      hl.textContent='Yellow zone - reduce planned intensity ~30-40%.';
     }
-    rs.textContent='Recovery '+d.recovery+'% · HRV '+d.hrv+'ms · RHR '+d.rhr+'bpm · Sleep '+d.sleepPerf+'%';
+    rs.textContent='Recovery '+d.recovery+'% - HRV '+d.hrv+'ms - RHR '+d.rhr+'bpm - Sleep '+d.sleepPerf+'%';
   }
 
   function updateDay(){
-    $('demoDayLabel').textContent=dayLabel(dayIndex);
-    var rf=$('ringFill');
+    document.getElementById('demoDayLabel').textContent=dayLabel(dayIndex);
+    var rf=document.getElementById('ringFill');
     rf.style.transition='none'; rf.style.strokeDashoffset='603.19';
     var d=DAY_POOL[dayIndex%DAY_POOL.length];
     requestAnimationFrame(function(){requestAnimationFrame(function(){
@@ -505,17 +501,16 @@
     });});
   }
 
-  $('prevDay').addEventListener('click',function(){dayIndex=Math.min(dayIndex+1,DAY_POOL.length-1);updateDay();});
-  $('nextDay').addEventListener('click',function(){dayIndex=Math.max(dayIndex-1,0);updateDay();});
-  $('whoopRefreshBtn').addEventListener('click',function(){
-    var b=$('whoopRefreshBtn');b.classList.add('spinning');
+  document.getElementById('prevDay').addEventListener('click',function(){dayIndex=Math.min(dayIndex+1,DAY_POOL.length-1);updateDay();});
+  document.getElementById('nextDay').addEventListener('click',function(){dayIndex=Math.max(dayIndex-1,0);updateDay();});
+  document.getElementById('whoopRefreshBtn').addEventListener('click',function(){
+    var b=document.getElementById('whoopRefreshBtn');b.classList.add('spinning');
     setTimeout(function(){b.classList.remove('spinning');},400);
     dayIndex=Math.floor(Math.random()*DAY_POOL.length);
-    $('demoDayLabel').textContent=dayLabel(dayIndex);
+    document.getElementById('demoDayLabel').textContent=dayLabel(dayIndex);
     render(DAY_POOL[dayIndex]);
   });
 
-  // Tabs
   document.querySelectorAll('.tab-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
